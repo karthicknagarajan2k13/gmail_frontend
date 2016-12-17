@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {Routes, ROUTER_DIRECTIVES} from '@angular/router';
+import { ROUTER_DIRECTIVES } from '@angular/router';
 
 import { Email } from './models/email';
 import { GmailMails } from './providers/gmail-mail';
@@ -14,14 +14,7 @@ import { TrashComponent } from './trash/trash.component';
   styleUrls: ['./app.component.css'],
   directives: [ ROUTER_DIRECTIVES ]
 })
-@Routes([
-  {path: '/',            component: AppComponent },
-  {path: '/inbox',       component: InboxComponent },
-  {path: '/sent-mail',   component: SentMailComponent },
-  {path: '/starred',     component: StarredComponent },
-  {path: '/trash',       component: TrashComponent },
-  {path: '/*',           component: AppComponent }
-])
+
 export class AppComponent {
   emails: Email[];
   constructor(private gmailMails: GmailMails) {
