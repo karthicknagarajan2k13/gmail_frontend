@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ROUTER_DIRECTIVES } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 import { Email } from './models/email';
 import { GmailMails } from './providers/gmail-mail';
@@ -11,8 +11,7 @@ import { TrashComponent } from './trash/trash.component';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  directives: [ ROUTER_DIRECTIVES ]
+  styleUrls: ['./app.component.css']
 })
 
 export class AppComponent {
