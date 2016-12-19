@@ -11,6 +11,8 @@ import { StarredComponent } from './starred/starred.component';
 import { SentMailComponent } from './sent-mail/sent-mail.component';
 import { TrashComponent } from './trash/trash.component';
 import { routes } from './app.routes';
+import { LoginComponent } from './login/login.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { routes } from './app.routes';
     InboxComponent,
     StarredComponent,
     SentMailComponent,
-    TrashComponent
+    TrashComponent,
+    LoginComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,
