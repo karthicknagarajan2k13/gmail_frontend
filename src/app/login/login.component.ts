@@ -13,6 +13,7 @@ import { contentHeaders } from '../common/headers';
 export class LoginComponent {
 	constructor(public router: Router, public http: Http) {}
 
+
 	login(event, email, password) {
 		event.preventDefault();
 		let body = JSON.stringify({user: {email: email, password: password}})
