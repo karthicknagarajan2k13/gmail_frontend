@@ -13,7 +13,7 @@ export const routes: Routes = [
 	{path: '',       component: InboxComponent },
 	{path: 'registration', component: RegistrationComponent },
 	{path: 'login',        component: LoginComponent },
-	{path: 'inbox',        component: InboxComponent, canActivate: [AuthGuard] },
+	{path: 'inbox',        component: InboxComponent},
 	{path: 'sent-mail',    component: SentMailComponent },
 	{path: 'starred',      component: StarredComponent },
 	{path: 'trash',        component: TrashComponent }

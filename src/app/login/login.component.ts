@@ -15,20 +15,26 @@ export class LoginComponent {
 
 	login(event, email, password) {
 		event.preventDefault();
-		let body = JSON.stringify({ email, password });
+		let body = JSON.stringify({user: {email: email, password: password}})
 		this.http.post('http://localhost:3000/users/sign_in', body, { headers: contentHeaders })
 		.subscribe(
 			response => {
-				localStorage.setItem('id_token', response.json().id_token);
-				this.router.navigate(['inbox']);
+				console.log('login success response');
+				console.log(response);
+				console.log('TOKEN');
+				console.log(response.json().data.auth_token);
+				localStorage.setItem('auth_token', response.json().data.auth_token);
+				this.router.navigate(['']);
 			},
 			error => {
 				console.log(error.text());
 			}
 		);
 	}
+	
 	signup(event) {
     event.preventDefault();
     this.router.navigate(['registration']);
   }
+
 }
