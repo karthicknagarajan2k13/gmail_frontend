@@ -1,15 +1,17 @@
-<div class="login jumbotron center-block">
-  <h2>Login</h2>
-  <form role="form" (submit)="login($event, email.value, password.value)">
-  <div class="form-group">
-    <label for="email">Email</label>
-    <input type="text" #email class="form-control" id="email" placeholder="Email">
+<div class="col-sm-8 col-sm-offset-4 col-md-4 col-md-offset-4" style="margin-top: 80px;">
+  <div class="login jumbotron center-block" style="padding: 25px;">
+    <h2 align="center">Login</h2>
+    <form role="form" (submit)="login($event, email.value, password.value)">
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="text" #email class="form-control" id="email" placeholder="Email">
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" #password class="form-control" id="password" placeholder="Password">
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+      <a [routerLink]="['/registration']">Click here to Registration</a>
+  </form>
   </div>
-  <div class="form-group">
-    <label for="password">Password</label>
-    <input type="password" #password class="form-control" id="password" placeholder="Password">
-  </div>
-  <button type="submit" class="btn btn-default">Submit</button>
-    <a [routerLink]="['/registration']">Click here to Registration</a>
-</form>
 </div>

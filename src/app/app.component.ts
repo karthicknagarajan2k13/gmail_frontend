@@ -8,6 +8,9 @@ import { SentMailComponent } from './sent-mail/sent-mail.component';
 import { StarredComponent } from './starred/starred.component';
 import { TrashComponent } from './trash/trash.component';
 
+import { contentHeaders } from './common/headers';
+
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -17,9 +20,18 @@ import { TrashComponent } from './trash/trash.component';
 export class AppComponent {
   emails: Email[];
   constructor(private gmailMails: GmailMails) {
-    gmailMails.load().subscribe(emails => {
-      this.emails = emails;
-      console.log(emails);
-    })
+    // gmailMails.load().subscribe(emails => {
+    //   this.emails = emails;
+    //   console.log(emails);
+    // })
+    this.gmailMails.load()
+    .subscribe(
+      emails => this.emails = emails, //Bind to view
+      err => {
+        // Log errors if any
+        console.log(err);
+      });
   }
 }
+
+

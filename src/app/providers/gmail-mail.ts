@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 
@@ -14,6 +14,7 @@ export class GmailMails {
   // Load all gmail mails
   load(): Observable<Email[]> {
     return this.http.get(`${this.gmailUrl}/email/sent_mail`)
-      .map(res => <Email[]>res.json());
-  }
+      .map((res:Response) => res.json())
+  	.catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+  	}   
 }
