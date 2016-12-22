@@ -3,6 +3,7 @@ import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import { Router } from '@angular/router';
+import { ToastrService } from 'toastr-ng2';
 import { contentHeaders } from '../common/headers';
 
 @Component({
@@ -11,8 +12,10 @@ import { contentHeaders } from '../common/headers';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-	constructor(public router: Router, public http: Http) {}
-
+	private loggedIn = false;
+	constructor(public router: Router, public http: Http,private toastrService: ToastrService) {
+		this.loggedIn = !!localStorage.getItem('auth_token');
+	}
 
 	login(event, email, password) {
 		event.preventDefault();
@@ -24,13 +27,28 @@ export class LoginComponent {
 				console.log(response);
 				console.log('TOKEN');
 				console.log(response.json().data.auth_token);
-				localStorage.setItem('auth_token', response.json().data.auth_token);
-				this.router.navigate(['']);
+				if(response.json().success == true) {
+					localStorage.setItem('auth_token', response.json().data.auth_token);
+					console.log(localStorage.getItem('auth_token'));
+					this.loggedIn = true;
+					this.toastrService.success(response.json().info);
+				}
+				this.router.navigate(['inbox']);
 			},
 			error => {
 				console.log(error.text());
+				this.toastrService.error(error.text());
 			}
 		);
+	}
+
+	logout() {
+		localStorage.removeItem('auth_token');
+		this.loggedIn = false;
+	}
+
+	isLoggedIn() {
+		return this.loggedIn;
 	}
 	
 	signup(event) {

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { Email } from './models/email';
-import { GmailMails } from './providers/gmail-mail';
+import { GmailService } from './service/gmail.service';
 import { InboxComponent } from './inbox/inbox.component';
 import { SentMailComponent } from './sent-mail/sent-mail.component';
 import { StarredComponent } from './starred/starred.component';
@@ -19,12 +19,8 @@ import { contentHeaders } from './common/headers';
 
 export class AppComponent {
   emails: Email[];
-  constructor(private gmailMails: GmailMails) {
-    // gmailMails.load().subscribe(emails => {
-    //   this.emails = emails;
-    //   console.log(emails);
-    // })
-    this.gmailMails.load()
+  constructor(private gmailService: GmailService) {
+    this.gmailService.load()
     .subscribe(
       emails => this.emails = emails, //Bind to view
       err => {

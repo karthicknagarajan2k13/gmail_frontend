@@ -3,9 +3,11 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
+import { ToastrModule } from 'toastr-ng2';
 
 import { AppComponent } from './app.component';
-import { GmailMails } from './providers/gmail-mail';
+import { GmailService } from './service/gmail.service';
+import { UserService } from './service/user.service';
 import { InboxComponent } from './inbox/inbox.component';
 import { StarredComponent } from './starred/starred.component';
 import { SentMailComponent } from './sent-mail/sent-mail.component';
@@ -28,9 +30,10 @@ import { RegistrationComponent } from './registration/registration.component';
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    ToastrModule.forRoot()
   ],
-  providers: [GmailMails],
+  providers: [GmailService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -3,6 +3,7 @@ import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import { Router } from '@angular/router';
+import { ToastrService } from 'toastr-ng2';
 import { contentHeaders } from '../common/headers';
 
 
@@ -12,7 +13,7 @@ import { contentHeaders } from '../common/headers';
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent {
-	constructor(public router: Router, public http: Http) {}
+	constructor(public router: Router, public http: Http,private toastrService: ToastrService) {}
 
 	register(event, name, email, password, password_conformation) {
 		event.preventDefault();
@@ -27,10 +28,15 @@ export class RegistrationComponent {
 				console.log('TOKEN');
 				console.log(response.json().data.auth_token);
 				localStorage.setItem('auth_token', response.json().data.auth_token);
+				console.log(response.json().success);
+				if(response.json().success == true) {
+					this.toastrService.success(response.json().info);
+				}
 				this.router.navigate(['inbox']);
 			},
 			error => {
 				console.log(error.text());
+				this.toastrService.error(error.text());
 			}
 		);
 	}
