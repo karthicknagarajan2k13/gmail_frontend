@@ -22,7 +22,7 @@
   margin-top: 10px;
 }
 .navbar a{
-  color: #000 !important;
+  color: #777 !important;
 }
 .navbar a:hover{
   color: #000 !important;
@@ -37,7 +37,7 @@
 @media (min-width: 768px) {
   .sidebar {
     background-color: #fff;
-    border-right: 1px solid #eee;
+    border-right: 1px solid #ccc;
     bottom: 0;
     display: block;
     left: 0;
@@ -53,12 +53,16 @@
   margin-left: -20px;
   margin-right: -21px;
 }
+.nav-sidebar > li{
+  border-bottom: 1px solid #777;
+}
 .nav-sidebar > li > a {
   padding-left: 20px;
   padding-right: 20px;
+  color: #777 !important;
 }
 .nav-sidebar > .active > a, .nav-sidebar > .active > a:hover, .nav-sidebar > .active > a:focus {
-  background-color: #428bca;
+  background-color: #777;
   color: #fff;
   cursor: pointer;
 }
@@ -115,4 +119,5 @@
   background: #dadada none repeat scroll 0 0;
   border-bottom: 1px solid #ffffff;
   border-top: 1px solid #d2d2d2;
+  cursor: pointer;
 }

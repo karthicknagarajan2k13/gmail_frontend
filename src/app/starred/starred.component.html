@@ -1,7 +1,7 @@
 <div class="table-responsive">
 	<table class="table table-striped">
 		<tbody>
-			<tr *ngFor="let email of emails">
+			<tr *ngFor="let email of emails" [routerLink]="['/email-detail', email.id]">
 				<td><input type="checkbox" name=""></td>
 				<td><button><i class="fa fa-star-o"></i></button></td>
 				<td>Username</td>

@@ -1,12 +1,12 @@
 <div class="table-responsive">
 	<table class="table table-striped">
 		<tbody>
-			<tr *ngFor="let email of emails">
+			<tr *ngFor="let email of emails" [routerLink]="['/email-detail', email.id]">
 				<td><input type="checkbox" name=""></td>
 				<td><button><i class="fa fa-star-o"></i></button></td>
-				<td>{{email.user_id}}</td>
+				<td>{{email.user_name}}</td>
 				<td>{{email.subject}} <span style="color: #777;">- {{email.message}}</span></td>
-				<td>{{email.created_at}}</td>
+				<td>{{email.created_at | date }}</td>
 			</tr>
 		</tbody>
 	</table>

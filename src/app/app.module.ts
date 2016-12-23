@@ -15,6 +15,7 @@ import { TrashComponent } from './trash/trash.component';
 import { routes } from './app.routes';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { EmailDetailComponent } from './email-detail/email-detail.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { RegistrationComponent } from './registration/registration.component';
     SentMailComponent,
     TrashComponent,
     LoginComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    EmailDetailComponent
   ],
   imports: [
     BrowserModule,
