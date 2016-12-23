@@ -56,10 +56,19 @@
 .nav-sidebar > .active > a, .nav-sidebar > .active > a:hover, .nav-sidebar > .active > a:focus {
   background-color: #428bca;
   color: #fff;
+  cursor: pointer;
 }
 .main {
   padding: 40px 0 0;
 }
 .main .page-header {
   margin-top: 0;
+}
+.email_compose{
+  background: #000 none repeat scroll 0 0;
+  bottom: 0;
+  color: #fff;
+  height: 200px;
+  position: fixed;
+  right: 1px;
 }

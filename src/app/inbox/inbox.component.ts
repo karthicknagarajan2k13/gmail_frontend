@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'toastr-ng2';
 
+import { GmailService } from '../service/gmail.service';
+import { Email } from '../models/email';
 
 @Component({
   selector: 'app-inbox',
@@ -8,9 +10,14 @@ import { ToastrService } from 'toastr-ng2';
   styleUrls: ['./inbox.component.css']
 })
 export class InboxComponent {
-	constructor(private toastrService: ToastrService) {}
-
-	showSuccess() {
-		this.toastrService.success('Hello world!', 'Toastr fun!');
+	emails: Email[];
+	constructor(private gmailService: GmailService) {
+		this.gmailService.inbox()
+		.subscribe(
+			emails => this.emails = emails, //Bind to view
+			err => {
+				// Log errors if any
+				console.log(err);
+			});
 	}
 }

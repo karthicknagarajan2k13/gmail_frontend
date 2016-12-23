@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterModule,Router } from '@angular/router';
+import { ToastrService } from 'toastr-ng2';
 
 import { Email } from './models/email';
 import { GmailService } from './service/gmail.service';
@@ -18,16 +19,26 @@ import { contentHeaders } from './common/headers';
 })
 
 export class AppComponent {
-  emails: Email[];
-  constructor(private gmailService: GmailService) {
-    this.gmailService.load()
-    .subscribe(
-      emails => this.emails = emails, //Bind to view
-      err => {
-        // Log errors if any
-        console.log(err);
-      });
+  public email_compose = false;
+  private loggedIn = false;
+  constructor(private toastrService: ToastrService,public router: Router) {
+    this.loggedIn = !!localStorage.getItem('auth_token');
   }
+  tokenCheck(){
+    console.log('common method called!')
+  }
+
+  mailCompose(){
+    this.toastrService.success('compose clicked');
+    this.email_compose = true;
+  }
+
+  logout() {
+    localStorage.removeItem('auth_token');
+    this.loggedIn = false;
+    this.router.navigate(['login']);
+  }
+
 }
 
 

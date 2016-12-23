@@ -32,23 +32,14 @@ export class LoginComponent {
 					console.log(localStorage.getItem('auth_token'));
 					this.loggedIn = true;
 					this.toastrService.success(response.json().info);
+					this.router.navigate(['inbox']);
 				}
-				this.router.navigate(['inbox']);
 			},
 			error => {
 				console.log(error.text());
 				this.toastrService.error(error.text());
 			}
 		);
-	}
-
-	logout() {
-		localStorage.removeItem('auth_token');
-		this.loggedIn = false;
-	}
-
-	isLoggedIn() {
-		return this.loggedIn;
 	}
 	
 	signup(event) {
