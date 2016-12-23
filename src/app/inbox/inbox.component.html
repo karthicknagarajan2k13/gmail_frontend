@@ -4,9 +4,9 @@
 			<tr *ngFor="let email of emails">
 				<td><input type="checkbox" name=""></td>
 				<td><button><i class="fa fa-star-o"></i></button></td>
-				<td>Username</td>
+				<td>{{email.user_id}}</td>
 				<td>{{email.subject}} <span style="color: #777;">- {{email.message}}</span></td>
-				<td>Dec 15</td>
+				<td>{{email.created_at}}</td>
 			</tr>
 		</tbody>
 	</table>

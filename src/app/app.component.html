@@ -27,10 +27,10 @@
 		<div class="col-sm-3 col-md-2 sidebar">
 			<ul class="nav nav-sidebar">
 				<li class="active"><a (click)="mailCompose()">COMPOSE<span class="sr-only">(current)</span></a></li>
-				<li><a [routerLink]="['/inbox']">Inbox</a></li>
-				<li><a [routerLink]="['/starred']">Starred</a></li>
-				<li><a [routerLink]="['/sent-mail']">Sent Mail</a></li>
-				<li><a [routerLink]="['/trash']">Trash</a></li>
+				<li><a [routerLink]="['/inbox']" routerLinkActive="active">Inbox</a></li>
+				<li><a [routerLink]="['/starred']" routerLinkActive="active">Starred</a></li>
+				<li><a [routerLink]="['/sent-mail']" routerLinkActive="active">Sent Mail</a></li>
+				<li><a [routerLink]="['/trash']" routerLinkActive="active">Trash</a></li>
 			</ul>
 		</div>
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -48,7 +48,22 @@
 				<router-outlet></router-outlet>
 				<div *ngIf="email_compose" class="col-md-5 email_compose">
 					<div>
-						<p>jhghjghjgjh</p>
+						<div class="email_header">
+							<p class="col-md-11">Header</p>
+							<p class="col-md-1" style="cursor: pointer;" (click)="closeMailcompose()"><span><i class="fa fa-close"></i></span></p>
+						</div>
+						<form role="form" (submit)="compose($event, to.value, subject.value, message.value )">
+							<div class="email_recipients">
+								<input type="text" #to class="form-control" id="email" placeholder="email">
+								<input type="text" #subject class="form-control" placeholder="Subject">
+							</div>
+							<div class="email_body">
+								<textarea type="text" #message class="form-control" placeholder="Enter your message here.."></textarea>
+							</div>
+							<div class="email_footer">
+								<button type="submit" class="btn btn-primary">send</button>
+							</div>
+						</form>
 					</div>
 				</div>
 				<!-- additional code end -->

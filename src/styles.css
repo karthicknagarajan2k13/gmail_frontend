@@ -27,6 +27,10 @@
 .navbar a:hover{
   color: #000 !important;
 }
+/*.active a{
+  background: #777;
+  color: #000;
+}*/
 .navbar a:focus{
   color: #000 !important;
 }
@@ -65,10 +69,50 @@
   margin-top: 0;
 }
 .email_compose{
-  background: #000 none repeat scroll 0 0;
+  background: #fff none repeat scroll 0 0;
   bottom: 0;
-  color: #fff;
-  height: 200px;
+  color: #000;
+  height: 450px;
+  padding: 0;
   position: fixed;
   right: 1px;
+}
+.email_header{
+  background: #777 none repeat scroll 0 0;
+  height: 35px;
+}
+.email_header p{
+  margin: 0;
+  padding: 7px 14px;
+  color: #fff;
+}
+.email_body{
+  border-left: 1px solid #c5c5c5;
+}
+.email_body textarea{
+  border-radius: 0;
+  border: none;
+  height: 285px;
+  box-shadow: none !important;
+}
+.email_recipients input{
+  border-bottom: 1px solid #c5c5c5;
+  border-left: 1px solid #c5c5c5;
+  border-radius: 0;
+  height: 40px;
+  box-shadow: !important;
+}
+.email_footer{
+  border-top: 1px solid #c5c5c5;
+  border-left: 1px solid #c5c5c5;
+  bottom: 0;
+  height: 50px;
+  padding: 7px 14px;
+  position: absolute;
+  width: 100%;
+}
+.table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+  background: #dadada none repeat scroll 0 0;
+  border-bottom: 1px solid #ffffff;
+  border-top: 1px solid #d2d2d2;
 }

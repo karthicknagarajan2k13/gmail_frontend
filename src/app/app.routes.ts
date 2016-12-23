@@ -13,10 +13,9 @@ export const routes: Routes = [
 	{path: '', redirectTo: 'login', pathMatch: 'full' },
 	{path: 'registration', component: RegistrationComponent },
 	{path: 'login',        component: LoginComponent },
-	{path: 'inbox',        component: InboxComponent},
+	{path: 'inbox',        component: InboxComponent },
 	{path: 'sent-mail',    component: SentMailComponent },
 	{path: 'starred',      component: StarredComponent },
 	{path: 'trash',        component: TrashComponent },
 	{path: '**',redirectTo:'login'}
-
 ];

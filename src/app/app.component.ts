@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { RouterModule,Router } from '@angular/router';
 import { ToastrService } from 'toastr-ng2';
+import { Http } from '@angular/http';
+import { Observable } from 'rxjs/Rx';
+import 'rxjs/add/operator/map';
 
 import { Email } from './models/email';
 import { GmailService } from './service/gmail.service';
@@ -21,7 +24,7 @@ import { contentHeaders } from './common/headers';
 export class AppComponent {
   public email_compose = false;
   private loggedIn = false;
-  constructor(private toastrService: ToastrService,public router: Router) {
+  constructor(private toastrService: ToastrService, public http: Http,public router: Router) {
     this.loggedIn = !!localStorage.getItem('auth_token');
   }
   tokenCheck(){
@@ -29,14 +32,49 @@ export class AppComponent {
   }
 
   mailCompose(){
-    this.toastrService.success('compose clicked');
     this.email_compose = true;
   }
 
+  closeMailcompose(){
+    this.email_compose = false;
+  }
+
+  compose(to, subject, message) {
+    event.preventDefault();
+    let body = JSON.stringify({email: {to: to, subject: subject, message: message}})
+    this.http.post('http://localhost:3000/email/compose', body, { headers: contentHeaders })
+    .subscribe(
+      response => {
+        console.log('compose success response');
+        console.log(response);
+        if(response.json().success == true) {
+          this.toastrService.success(response.json().info);
+        }
+      },
+      error => {
+        console.log(error.text());
+        this.toastrService.error(error.text());
+      }
+    );
+  }
+
   logout() {
-    localStorage.removeItem('auth_token');
-    this.loggedIn = false;
-    this.router.navigate(['login']);
+    this.http.delete('http://localhost:3000/users/sign_out', {})
+    .subscribe(
+      response => {
+        console.log(response);
+        if(response.json().success == true) {
+          localStorage.removeItem('auth_token');
+          this.loggedIn = false;
+          this.router.navigate(['login']);
+          this.toastrService.success(response.json().data);
+        }
+      },
+      error => {
+        console.log(error.text());
+        this.toastrService.error(error.text());
+      }
+    );
   }
 
 }
