@@ -39,7 +39,7 @@ export class AppComponent {
     this.email_compose = false;
   }
 
-  test(to, subject, message) {
+  composeMail(to, subject, message) {
     event.preventDefault();
     let body = JSON.stringify({email: {to: to, subject: subject, message: message}})
     this.http.post('http://localhost:3000/email/compose', body, { headers: contentHeaders })

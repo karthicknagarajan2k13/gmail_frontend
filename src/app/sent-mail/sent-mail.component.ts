@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'toastr-ng2';
+import { Http } from '@angular/http';
+import { Observable } from 'rxjs/Rx';
+import 'rxjs/add/operator/map';
+import { Router } from '@angular/router';
 
 import { GmailService } from '../service/gmail.service';
 import { Email } from '../models/email';
+import { contentHeaders } from '../common/headers';
 
 @Component({
   selector: 'app-sent-mail',
@@ -10,7 +16,7 @@ import { Email } from '../models/email';
 })
 export class SentMailComponent{
 	emails: Email[];
-	constructor(private gmailService: GmailService) {
+	constructor(private gmailService: GmailService, public http: Http,private toastrService: ToastrService, public router: Router) {
 		this.gmailService.sentMail()
 		.subscribe(
 			emails => this.emails = emails, //Bind to view
@@ -19,4 +25,33 @@ export class SentMailComponent{
 				console.log(err);
 			});
 	}
+	starMail(email_id) {
+    let body = JSON.stringify({email_id: email_id})
+    this.http.post('http://localhost:3000/email/starred_mail', body, { headers: contentHeaders })
+	    .subscribe(
+	      response => {
+	        console.log('starmail success response');
+	        console.log(response);
+	        if(response.json().success == true) {
+	        	if (response.json().email.is_active == true){
+	        		this.toastrService.success('Added to Starred');
+	        	}
+	        	else{
+	        		this.toastrService.success('Removed to Starred');	
+	        	}
+	        }
+	      },
+	      error => {
+	        console.log(error.text());
+	      }
+	    );
+  	}
+  	getStyle(email){
+  		if(email.is_active == true) {
+  			return 'yellow';
+  		}
+  		else{
+  			return'white'
+  		}
+  	}
 }

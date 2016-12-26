@@ -26,13 +26,13 @@ export class LoginComponent {
 				console.log('login success response');
 				console.log(response);
 				console.log('TOKEN');
-				console.log(response.json().data.auth_token);
 				if(response.json().success == true) {
 					localStorage.setItem('auth_token', response.json().data.auth_token);
 					console.log(localStorage.getItem('auth_token'));
 					this.loggedIn = true;
 					this.toastrService.success(response.json().info);
 					this.router.navigate(['inbox']);
+					// location.reload();
 				}
 			},
 			error => {
