@@ -5,8 +5,6 @@ import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 
-import { Email } from '../models/email';
-
 @Component({
   selector: 'app-email-detail',
   templateUrl: './email-detail.component.html',
@@ -16,8 +14,10 @@ export class EmailDetailComponent{
 	private sub: any;
 
 	private emailId: number;
-
-	email:Email[]
+	private to: string;
+	private subject: string;
+	private message: string;
+	private user_name: string;
 
 	constructor(private toastrService: ToastrService,private route: ActivatedRoute,public http: Http) { }
 
@@ -26,15 +26,19 @@ export class EmailDetailComponent{
 			this.emailId = +params["id"];
 			console.log(this.emailId);
 		});
-		this.http.get(`http://localhost:3000/email/sent_mail/`+this.emailId)
+		var token = localStorage.getItem('auth_token');
+		this.http.get(`http://localhost:3000/email/sent_mail/`+this.emailId+'?token='+token)
 		.subscribe(
-      response => {
-      	this.email = response.json().email;
-        console.log(response.json().email);
-      },
-      error => {
-        console.log(error.text());
-      }
-    );
+	      	response => {
+		      	var email = response.json();
+		        this.user_name =  email.email.user_name;
+		        this.message =  email.email.message;
+		        this.to = email.email.to;
+		        this.subject = email.email.subject;
+	      	},
+	      	error => {
+	        	console.log(error.text());
+	      	}
+    	);
 	}
 }

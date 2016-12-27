@@ -4,11 +4,11 @@
     <form role="form" (submit)="login($event, email.value, password.value)">
     <div class="form-group">
       <label for="email">Email</label>
-      <input type="text" #email class="form-control" id="email" placeholder="Email">
+      <input type="text" #email class="form-control" id="email" placeholder="Email" required>
     </div>
     <div class="form-group">
       <label for="password">Password</label>
-      <input type="password" #password class="form-control" id="password" placeholder="Password">
+      <input type="password" #password class="form-control" id="password" placeholder="Password" required>
     </div>
     <button type="submit" class="btn btn-default">Submit</button>
       <a [routerLink]="['/registration']">Click here to Registration</a>

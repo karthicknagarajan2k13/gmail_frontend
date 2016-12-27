@@ -27,18 +27,19 @@ export class StarredComponent{
 			});
 	}
 	starMail(email_id) {
+	var token = localStorage.getItem('auth_token');
     let body = JSON.stringify({email_id: email_id})
-    this.http.post('http://localhost:3000/email/starred_mail', body, { headers: contentHeaders })
+    this.http.post('http://localhost:3000/email/starred_mail?token='+token, body, { headers: contentHeaders })
 	    .subscribe(
 	      response => {
 	        console.log('starmail success response');
-	        console.log(response.json());
+	        console.log(response);
 	        if(response.json().success == true) {
 	        	if (response.json().email.is_active == true){
 	        		this.toastrService.success('Added to Starred');
 	        	}
 	        	else{
-	        		this.toastrService.success('Removed to Starred');
+	        		this.toastrService.success('Removed to Starred');	
 	        	}
 	        	location.reload();
 	        }

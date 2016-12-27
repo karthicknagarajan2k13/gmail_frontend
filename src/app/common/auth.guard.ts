@@ -8,21 +8,11 @@ export class AuthGuard implements CanActivate {
   constructor(private router: Router) {}
 
   canActivate() {
-  	console.log('i am checking to see if you are logged in');
-  	return true;
+    if (tokenNotExpired()) {
+      return true;
+    }
+
+    this.router.navigate(['login']);
+    return false;
   }
-
-  canActivateChild() {
-  	console.log('checking child route access');
-  	return true;
-  }
-
-  // canActivate() {
-  //   if (tokenNotExpired()) {
-  //     return true;
-  //   }
-
-  //   this.router.navigate(['login']);
-  //   return false;
-  // }
 }

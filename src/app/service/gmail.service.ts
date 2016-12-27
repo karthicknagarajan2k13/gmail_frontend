@@ -28,5 +28,11 @@ export class GmailService {
 		return this.http.get(`${this.gmailUrl}/email/starred?token=`+token)
 		.map((res:Response) => res.json().emails)
 		.catch((error:any) => Observable.throw(error.json().error || 'Server error'));
-	}  
+	} 
+	trash(): Observable<Email[]> {
+		var token = localStorage.getItem('auth_token');
+		return this.http.get(`${this.gmailUrl}/email/trash?token=`+token)
+		.map((res:Response) => res.json().emails)
+		.catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+	}
 }

@@ -31,7 +31,8 @@ export class LoginComponent {
 					console.log(localStorage.getItem('auth_token'));
 					this.loggedIn = true;
 					this.toastrService.success(response.json().info);
-					this.router.navigate(['inbox']);
+					// this.router.navigate(['inbox']);
+					this.router.navigate(['inbox'])
 					// location.reload();
 				}
 			},

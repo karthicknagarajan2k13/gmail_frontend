@@ -7,7 +7,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" [routerLink]="['/']">GmailApp</a>
+			<a class="navbar-brand" [routerLink]="['/inbox']">GmailApp</a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
@@ -52,7 +52,7 @@
 							<p class="col-md-11">Compose Mail</p>
 							<p class="col-md-1" style="cursor: pointer;" (click)="closeMailcompose()"><span><i class="fa fa-close"></i></span></p>
 						</div>
-						<form role="form" (ngSubmit)="composeMail($event, email.value, subject.value, message.value)">
+						<form role="form" (ngSubmit)="composeMail($event, to.value, subject.value, message.value)">
 							<div class="email_recipients">
 								<input type="email" #to class="form-control" id="to" placeholder="email" required>
 								<input type="text" #subject class="form-control" id="subject" placeholder="Subject" required>

@@ -39,17 +39,19 @@ export class AppComponent {
     this.email_compose = false;
   }
 
-  composeMail(to, subject, message) {
+  composeMail(event, to, subject, message) {
+    var token = localStorage.getItem('auth_token');
     event.preventDefault();
     let body = JSON.stringify({email: {to: to, subject: subject, message: message}})
-    this.http.post('http://localhost:3000/email/compose', body, { headers: contentHeaders })
+    this.http.post('http://localhost:3000/email/compose?token='+token, body, { headers: contentHeaders })
     .subscribe(
       response => {
         console.log('compose success response');
         console.log(response);
         if(response.json().success == true) {
-          this.toastrService.success(response.json().info);
+          this.toastrService.success('Email successfully created');
         }
+        location.reload();
       },
       error => {
         console.log(error.text());

@@ -16,6 +16,7 @@ import { routes } from './app.routes';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { EmailDetailComponent } from './email-detail/email-detail.component';
+import { TruncatePipe }   from './app.pipe';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { EmailDetailComponent } from './email-detail/email-detail.component';
     TrashComponent,
     LoginComponent,
     RegistrationComponent,
-    EmailDetailComponent
+    EmailDetailComponent,
+    TruncatePipe
   ],
   imports: [
     BrowserModule,

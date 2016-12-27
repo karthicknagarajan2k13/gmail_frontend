@@ -26,8 +26,9 @@ export class SentMailComponent{
 			});
 	}
 	starMail(email_id) {
+	var token = localStorage.getItem('auth_token');
     let body = JSON.stringify({email_id: email_id})
-    this.http.post('http://localhost:3000/email/starred_mail', body, { headers: contentHeaders })
+    this.http.post('http://localhost:3000/email/starred_mail?token='+token, body, { headers: contentHeaders })
 	    .subscribe(
 	      response => {
 	        console.log('starmail success response');
@@ -39,6 +40,7 @@ export class SentMailComponent{
 	        	else{
 	        		this.toastrService.success('Removed to Starred');	
 	        	}
+	        	location.reload();
 	        }
 	      },
 	      error => {
